@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoSetu-India (भूसेतु-भारत) — National Land Acquisition &amp; Management Portal | Govt. of India</title>
+  
+  <!-- External CDN Stylesheets & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body data-theme="light">
+
+  <a href="#content" class="skip-link" data-i18n="skip_content">Skip to Main Content</a>
+
+  <!-- ================= GIGW TOP ACCESSIBILITY MASTHEAD ================= -->
+  <div class="gov-top-container">
+    <!-- National Tricolour Strip -->
+    <div class="gov-tricolour-strip" aria-hidden="true"></div>
+
+    <!-- Utility Bar -->
+    <div class="gov-utility-bar">
+      <div class="gov-utility-container">
+        <div class="gov-utility-left">
+          <span class="gov-in-badge">IN</span>
+          <span data-i18n="gov_top_masthead">Government of India • Ministry of Rural Development • Department of Land Resources</span>
+        </div>
+
+        <div class="gov-utility-right">
+          <!-- Text Sizing -->
+          <div class="font-sizing-group" title="Adjust text size">
+            <button class="font-sizer-btn font-btn" data-scale="sm" onclick="setFontSize(-1)" title="Small Text (A-)">A-</button>
+            <button class="font-sizer-btn font-btn active" data-scale="base" onclick="setFontSize(0)" title="Normal Text (A)">A</button>
+            <button class="font-sizer-btn font-btn" data-scale="lg" onclick="setFontSize(1)" title="Large Text (A+)">A+</button>
+          </div>
+
+          <!-- GIGW Multilingual Language Selector (22 Scheduled Languages + English) -->
+          <div class="gov-lang-select-wrap" title="Select Language">
+            <span class="gov-lang-icon" aria-hidden="true">🌐</span>
+            <select id="lang-select" class="gov-lang-select" onchange="setLanguage(this.value)" aria-label="Select Portal Language">
+              <option value="en">English</option>
+              <option value="hi">हिन्दी (Hindi)</option>
+              <option value="bn">বাংলা (Bengali)</option>
+              <option value="mr">मराठी (Marathi)</option>
+              <option value="te">తెలుగు (Telugu)</option>
+              <option value="ta">தமிழ் (Tamil)</option>
+              <option value="gu">ગુજરાતી (Gujarati)</option>
+              <option value="ur">اردو (Urdu)</option>
+              <option value="kn">ಕನ್ನಡ (Kannada)</option>
+              <option value="or">ଓଡ଼ିଆ (Odia)</option>
+              <option value="ml">മലയാളം (Malayalam)</option>
+              <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+              <option value="as">অসমীয়া (Assamese)</option>
+              <option value="mai">मैथिली (Maithili)</option>
+              <option value="sa">संस्कृतम् (Sanskrit)</option>
+              <option value="kok">कोंकणी (Konkani)</option>
+              <option value="sd">सिन्धी (Sindhi)</option>
+              <option value="doi">डोगरी (Dogri)</option>
+              <option value="mni">মৈতৈलोन् (Manipuri)</option>
+              <option value="ne">नेपाली (Nepali)</option>
+              <option value="brx">बड़ो (Bodo)</option>
+              <option value="sat">ᱥᱟᱱᱛᱟᱲᱤ (Santali)</option>
+              <option value="ks">कश्मीरी (Kashmiri)</option>
+            </select>
+          </div>
+
+          <!-- Quick Modals -->
+          <button class="btn-util-modal" onclick="openAccessibilityModal()" data-i18n="a11y_btn" title="Accessibility Options">♿ Accessibility</button>
+          <button class="btn-util-modal" onclick="openScreenReaderModal()" data-i18n="screen_reader_btn" title="Screen Reader Guide">🔊 Screen Reader</button>
+          <button class="btn-util-modal" onclick="openSitemapModal()" data-i18n="sitemap_btn" title="Portal Sitemap">🗺️ Sitemap</button>
+          <button class="btn-util-modal" onclick="openContactModal()" data-i18n="contact_btn" title="Helpdesk">📞 Contact / Help</button>
+          <button class="btn-util-modal btn-device-toggle" onclick="Device.toggleMode()" data-i18n="mobile_view_btn" title="Toggle Desktop/Mobile layout">📱 Mobile View</button>
+
+          <!-- Live IST Clock -->
+          <span class="ist-clock-badge" id="ist-clock">Loading IST...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Government Masthead -->
+    <header class="gov-masthead" role="banner">
+      <div class="gov-masthead-container">
+        <div class="gov-brand-wrap">
+          <!-- Ashoka Lion Capital (Gold Emblem of India) -->
+          <div class="gov-emblem-box">
+            <svg class="ashoka-svg" viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="National Emblem of India">
+              <g fill="#c59b27" stroke="#8c6d1a" stroke-width="1.2">
+                <path d="M50 8 C42 8 36 14 36 22 C36 28 40 33 46 35 C42 37 38 42 38 48 C38 56 44 62 50 63 C56 62 62 56 62 48 C62 42 58 37 54 35 C60 33 64 28 64 22 C64 14 58 8 50 8 Z"/>
+                <path d="M30 18 C24 20 20 26 22 34 C24 40 28 44 34 44 C33 48 35 53 38 56 C41 53 43 47 43 42 C37 42 32 38 30 18 Z"/>
+                <path d="M70 18 C76 20 80 26 78 34 C76 40 72 44 66 44 C67 48 65 53 62 56 C59 53 57 47 57 42 C63 42 68 38 70 18 Z"/>
+              </g>
+              <rect x="18" y="65" width="64" height="14" rx="2" fill="#d4af37" stroke="#8c6d1a" stroke-width="1.2"/>
+              <circle cx="50" cy="72" r="5.5" fill="none" stroke="#073763" stroke-width="1.5"/>
+              <circle cx="50" cy="72" r="1.5" fill="#073763"/>
+              <line x1="50" y1="66.5" x2="50" y2="77.5" stroke="#073763" stroke-width="0.8"/>
+              <line x1="44.5" y1="72" x2="55.5" y2="72" stroke="#073763" stroke-width="0.8"/>
+              <line x1="46" y1="68" x2="54" y2="76" stroke="#073763" stroke-width="0.8"/>
+              <line x1="46" y1="76" x2="54" y2="68" stroke="#073763" stroke-width="0.8"/>
+              <path d="M26 69 C24 71 24 73 27 75 C29 74 30 71 28 69 Z" fill="#073763"/>
+              <path d="M74 69 C76 71 76 73 73 75 C71 74 70 71 72 69 Z" fill="#073763"/>
+              <path d="M22 81 L78 81 L72 90 L28 90 Z" fill="#c59b27" stroke="#8c6d1a" stroke-width="1"/>
+              <rect x="15" y="90" width="70" height="4" rx="1" fill="#8c6d1a"/>
+              <text x="50" y="103" text-anchor="middle" font-size="8.5" font-family="'Noto Sans Devanagari', sans-serif" font-weight="700" fill="#073763">सत्यमेव जयते</text>
+            </svg>
+            <span class="emblem-motto">सत्यमेव जयते</span>
+          </div>
+
+          <!-- Institutional Hierarchy & GeoSetu-India Title -->
+          <div class="gov-titles" onclick="showHomeScreen()" style="cursor:pointer;" title="Go to Portal Home">
+            <div class="gov-dept-row-hi" data-i18n="dept_full">Department of Land Resources • Ministry of Rural Development • Government of India</div>
+            <div class="gov-brand-title">
+              <span class="gov-name-en" data-i18n="portal_brand">GeoSetu-India</span>
+            </div>
+            <div class="gov-system-tag" data-i18n="portal_tag">
+              National Land Acquisition &amp; Management System
+            </div>
+          </div>
+        </div>
+
+        <!-- Official Insignias -->
+        <div class="gov-badges-wrap">
+          <!-- Digital India -->
+          <div class="gov-seal-card">
+            <div class="seal-icon-wrap">
+              <svg viewBox="0 0 32 32" width="26" height="26">
+                <circle cx="16" cy="16" r="14" fill="#ffffff" stroke="#ff9933" stroke-width="2"/>
+                <circle cx="16" cy="16" r="9" fill="#ffffff" stroke="#138808" stroke-width="1.5"/>
+                <circle cx="16" cy="16" r="3" fill="#073763"/>
+              </svg>
+            </div>
+            <div>
+              <div class="seal-title">Digital India</div>
+              <div class="seal-sub">Power To Empower</div>
+            </div>
+          </div>
+
+          <!-- PM GatiShakti -->
+          <div class="gov-seal-card">
+            <div class="seal-icon-wrap">
+              <svg viewBox="0 0 32 32" width="24" height="24">
+                <polygon points="8,24 16,6 24,24" fill="#ea580c"/>
+                <circle cx="16" cy="16" r="3.5" fill="#138808"/>
+              </svg>
+            </div>
+            <div>
+              <div class="seal-title">PM GatiShakti</div>
+              <div class="seal-sub">National Master Plan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sticky Navigation Bar with Multi-Level Dropdowns -->
+    <nav class="gov-navbar" role="navigation" aria-label="Primary Portal Navigation">
+      <div class="gov-nav-container">
+        <div class="gov-nav-links">
+          <!-- Home -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn active" id="nav-btn-home" onclick="showHomeScreen();" data-i18n="nav_home">
+              HOME
+            </button>
+          </div>
+
+          <!-- About Us Dropdown -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn" data-i18n="nav_about">ABOUT US ▼</button>
+            <div class="gov-nav-dropdown">
+              <a href="#about-dolr" class="gov-dropdown-link" onclick="showHomeScreen(); switchPublicTab('overview');">
+                <div class="dropdown-title-row"><span>About Department of Land Resources (DoLR)</span></div>
+                <div class="dropdown-desc">Mandates, vision and policies under Ministry of Rural Development</div>
+              </a>
+              <a href="#about-geosetu" class="gov-dropdown-link" onclick="showHomeScreen(); switchPublicTab('overview');">
+                <div class="dropdown-title-row"><span>About GeoSetu-India Platform</span><span class="dropdown-badge">Mission</span></div>
+                <div class="dropdown-desc">Real-time transparent land acquisition, cadastral GIS &amp; DBT disbursal</div>
+              </a>
+              <a href="#about-framework" class="gov-dropdown-link" onclick="showHomeScreen(); switchPublicTab('overview');">
+                <div class="dropdown-title-row"><span>Statutory RFCTLARR Act 2013 Framework</span></div>
+                <div class="dropdown-desc">Legal pillars for transparent compensation, consent &amp; R&amp;R tracking</div>
+              </a>
+              <a href="#about-roles" class="gov-dropdown-link" onclick="showHomeScreen(); switchPublicTab('overview');">
+                <div class="dropdown-title-row"><span>Institutional Roles &amp; CALA Directory</span></div>
+                <div class="dropdown-desc">Central Nodal Ministry, State Revenue Authorities &amp; District Collectors</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Land Acquisition Dropdown -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn" data-i18n="nav_acquisition">LAND ACQUISITION ▼</button>
+            <div class="gov-nav-dropdown">
+              <a href="#sec4" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('cases'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Section 4 Preliminary Notifications</span><span class="dropdown-badge">Sec 4</span></div>
+                <div class="dropdown-desc">Public purpose declaration and notification of proposed survey numbers</div>
+              </a>
+              <a href="#sia" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('cases'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Social Impact Assessment (SIA) Reports</span></div>
+                <div class="dropdown-desc">Public hearings, affected families baseline, and Expert Group appraisals</div>
+              </a>
+              <a href="#sec11" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('cases'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Section 11 Declaration of Acquisition</span><span class="dropdown-badge">Sec 11</span></div>
+                <div class="dropdown-desc">Final declaration &amp; summary of Rehabilitation &amp; Resettlement scheme</div>
+              </a>
+              <a href="#jms" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('cases'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Joint Measurement Survey (JMS)</span></div>
+                <div class="dropdown-desc">On-ground geo-tagged verification with Revenue &amp; Project authorities</div>
+              </a>
+              <a href="#awards" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('compensation'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Compensation Award Status</span></div>
+                <div class="dropdown-desc">Sec 26-30 award determination and Direct Benefit Transfer tracking</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Land Management Dropdown -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn" data-i18n="nav_management">LAND MANAGEMENT ▼</button>
+            <div class="gov-nav-dropdown">
+              <a href="#registry" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('parcels'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>National Land Parcel Registry (Khasra/RoR)</span></div>
+                <div class="dropdown-desc">Integrated land records database synchronized with State Bhulekh portals</div>
+              </a>
+              <a href="#cadastral" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('map'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Cadastral Geo-Reference Verification</span></div>
+                <div class="dropdown-desc">Verification of digitized village boundaries and parcel GIS coordinates</div>
+              </a>
+              <a href="#titling" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('documents'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Title Verification &amp; Khatedar Registry</span></div>
+                <div class="dropdown-desc">Clear ownership titles, co-sharer percentages, and mutation records</div>
+              </a>
+              <a href="#rr" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('cases'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Rehabilitation &amp; Resettlement (R&amp;R) Tracking</span></div>
+                <div class="dropdown-desc">Monitoring alternative housing plots, annuity options &amp; family entitlements</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Projects Dropdown -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn" data-i18n="nav_projects">PROJECTS ▼</button>
+            <div class="gov-nav-dropdown">
+              <a href="#nhai" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('projects'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Highways &amp; Expressways (NHAI)</span><span class="dropdown-badge">Bharatmala</span></div>
+                <div class="dropdown-desc">Real-time acquisition corridors for Greenfield &amp; Brownfield expressways</div>
+              </a>
+              <a href="#dfccil" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('projects'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Dedicated Freight Corridors (DFCCIL / Railways)</span></div>
+                <div class="dropdown-desc">Eastern and Western Dedicated Freight Corridors alignment monitoring</div>
+              </a>
+              <a href="#bullet" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('projects'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>High Speed Rail Corridors (NHSRCL)</span></div>
+                <div class="dropdown-desc">Mumbai-Ahmedabad Bullet Train alignment and corridor parcels</div>
+              </a>
+              <a href="#gatishakti" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('projects'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>PM GatiShakti Multi-Modal Infrastructure</span></div>
+                <div class="dropdown-desc">Integrated port connectivity, industrial smart cities and energy pipelines</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- GIS Map Direct -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn" onclick="if(CURRENT_USER) navigate('map'); else { toast(t('signin_required_gis', 'Please Sign In to access GIS maps')); showLoginPage(); }" data-i18n="nav_gis">
+              GIS MAP
+            </button>
+          </div>
+
+          <!-- Documents Dropdown -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn" data-i18n="nav_documents">DOCUMENTS ▼</button>
+            <div class="gov-nav-dropdown">
+              <a href="#gazettes" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('documents'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Gazette Notifications Archive</span></div>
+                <div class="dropdown-desc">Searchable repository of Part II, Section 3 Central &amp; State Gazettes</div>
+              </a>
+              <a href="#sops" class="gov-dropdown-link" onclick="if(CURRENT_USER) navigate('documents'); else { showHomeScreen(); switchPublicTab('overview'); }">
+                <div class="dropdown-title-row"><span>Standard Operating Procedures (SOPs)</span></div>
+                <div class="dropdown-desc">Guidelines for District Collectors, CALA, and Survey Inspection teams</div>
+              </a>
+              <a href="#forms" class="gov-dropdown-link" onclick="showHomeScreen(); switchPublicTab('inquiry');">
+                <div class="dropdown-title-row"><span>Citizen Objection &amp; Claim Forms</span></div>
+                <div class="dropdown-desc">Statutory Form 3A, Bank Mandate forms and NOC submission formats</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Guidelines & Acts -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn" data-i18n="nav_guidelines">GUIDELINES &amp; ACTS ▼</button>
+            <div class="gov-nav-dropdown">
+              <a href="#act" class="gov-dropdown-link" onclick="showHomeScreen(); switchPublicTab('overview');">
+                <div class="dropdown-title-row"><span>RFCTLARR Act, 2013 (Full Text)</span></div>
+                <div class="dropdown-desc">Right to Fair Compensation and Transparency in Land Acquisition</div>
+              </a>
+              <a href="#rules" class="gov-dropdown-link" onclick="showHomeScreen(); switchPublicTab('overview');">
+                <div class="dropdown-title-row"><span>State Rules &amp; Local Amendments</span></div>
+                <div class="dropdown-desc">State-specific multiplier factors and administrative procedures</div>
+              </a>
+              <a href="#tribunal" class="gov-dropdown-link" onclick="showHomeScreen(); switchPublicTab('overview');">
+                <div class="dropdown-title-row"><span>Judicial Precedents &amp; Tribunal Orders</span></div>
+                <div class="dropdown-desc">Land Acquisition, Rehabilitation &amp; Resettlement Authority rulings</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Us -->
+          <div class="gov-nav-item">
+            <button class="gov-nav-btn" onclick="openContactModal()" data-i18n="nav_contact_us">CONTACT US</button>
+          </div>
+        </div>
+
+        <!-- Highlighted Login / Portal Action -->
+        <div>
+          <button class="gov-nav-btn highlighted" id="nav-btn-login" onclick="if(CURRENT_USER){ logout(); } else { showLoginPage(); }" data-i18n="nav_login">
+            LOGIN / SSO
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Government Notice Announcement Ticker -->
+    <div class="gov-ticker-wrap" aria-label="Latest Announcements">
+      <div class="gov-ticker-container">
+        <div class="gov-ticker-badge">
+          <span data-i18n="ticker_badge">📢 LATEST NOTICE</span>
+        </div>
+        <div class="gov-ticker-body">
+          <div class="gov-ticker-marquee" id="ticker-marquee">
+            <span class="ticker-entry">
+              <span>Section 4(1) Preliminary notification published for Bharatmala Expressway Phase-IV (Parcels 104-189, District Nagpur).</span>
+              <span class="ticker-date">[24 Sep 2026]</span>
+            </span>
+            <span class="ticker-entry">
+              <span>DBT Batch #4092: ₹142.50 Crore compensation directly credited to 842 Khatedars under RFCTLARR Act 2013.</span>
+              <span class="ticker-date">[23 Sep 2026]</span>
+            </span>
+            <span class="ticker-entry">
+              <span>Social Impact Assessment (SIA) public hearing scheduled on 30-Sep-2026 at Collectorate Hall, Pune.</span>
+              <span class="ticker-date">[22 Sep 2026]</span>
+            </span>
+            <span class="ticker-entry">
+              <span>E-Agreement Portal Active: Khatedars &amp; Officers can now review, e-Sign with Aadhaar, and generate timestamped deeds.</span>
+              <span class="ticker-date">[21 Sep 2026]</span>
+            </span>
+          </div>
+        </div>
+        <div class="gov-ticker-controls">
+          <button class="ticker-ctrl-btn" id="btn-ticker-pause" onclick="toggleTicker()" title="Pause Ticker">⏸</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PUBLIC PORTAL HOMEPAGE ================= -->
+  <div id="home-screen">
+    <!-- Hero Image Carousel (GIGW Visual Landmark) -->
+    <div class="hero-carousel-wrap" id="hero-carousel">
+      <div class="carousel-track" id="carousel-track">
+        <!-- Slide 1 -->
+        <div class="carousel-slide">
+          <img src="images/slide1.jpg" alt="National Land Acquisition Review Meeting">
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-caption">
+            <div class="carousel-caption-title">National Land Acquisition &amp; Management Review</div>
+            <div class="carousel-caption-sub">High-level national coordination under Ministry of Rural Development for fast-track statutory corridor clearance.</div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+          <img src="images/slide2.jpg" alt="Drone-based Cadastral Survey & Geo-referencing">
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-caption">
+            <div class="carousel-caption-title">Drone-based Cadastral Survey &amp; Geo-referencing</div>
+            <div class="carousel-caption-sub">High-precision orthomosaic mapping and ground-truthed boundary demarcation for complete transparency.</div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+          <img src="images/slide3.jpg" alt="Real-time GIS Spatial Analytics Dashboard">
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-caption">
+            <div class="carousel-caption-title">Real-time GIS Spatial Analytics Dashboard</div>
+            <div class="carousel-caption-sub">End-to-end alignment tracking across National Highways, Dedicated Freight Corridors and High-Speed Rail.</div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="carousel-slide">
+          <img src="images/slide4.jpg" alt="Rehabilitation & Resettlement Colony Tracking">
+          <div class="carousel-slide-overlay"></div>
+          <div class="carousel-caption">
+            <div class="carousel-caption-title">Rehabilitation &amp; Resettlement (R&amp;R) Colony Tracking</div>
+            <div class="carousel-caption-sub">Monitoring community welfare, alternative housing plots, and entitlement release under RFCTLARR Act 2013.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button class="carousel-nav-btn carousel-prev" onclick="prevSlide()" aria-label="Previous slide">❮</button>
+      <button class="carousel-nav-btn carousel-next" onclick="nextSlide()" aria-label="Next slide">❯</button>
+
+      <!-- Indicator Dots -->
+      <div class="carousel-dots" role="tablist">
+        <button class="carousel-dot active" onclick="showSlide(0)" role="tab" aria-label="Slide 1"></button>
+        <button class="carousel-dot" onclick="showSlide(1)" role="tab" aria-label="Slide 2"></button>
+        <button class="carousel-dot" onclick="showSlide(2)" role="tab" aria-label="Slide 3"></button>
+        <button class="carousel-dot" onclick="showSlide(3)" role="tab" aria-label="Slide 4"></button>
+      </div>
+    </div>
+
+    <!-- Main Portal Body Container -->
+    <main class="gov-portal-main" role="main">
+      <!-- Quick Switcher Tabs -->
+      <div class="gov-tabs-bar" role="tablist">
+        <button class="gov-tab-btn active" id="tab-btn-overview" onclick="switchPublicTab('overview')" role="tab" data-i18n="tab_overview">
+          🏛️ National Dashboard &amp; Registry
+        </button>
+        <button class="gov-tab-btn" id="tab-btn-inquiry" onclick="switchPublicTab('inquiry')" role="tab" data-i18n="tab_inquiry">
+          🔍 Citizen Land Inquiry &amp; Grievance
+        </button>
+      </div>
+
+      <!-- ================= TAB 1: OVERVIEW & REGISTRY ================= -->
+      <div class="public-tab-panel" id="panel-overview" style="display:block;">
+        <!-- 4-Card Government Metric Grid -->
+        <div class="metric-grid">
+          <div class="metric-card accent-blue">
+            <div class="metric-header">
+              <div>
+                <div class="metric-title" data-i18n="metric_land_title">Total Land Under Acquisition</div>
+                <div class="metric-val">42,850.75 Ha</div>
+              </div>
+              <div class="metric-icon-wrap">🗺️</div>
+            </div>
+            <div class="metric-footer">
+              <span style="color:var(--gov-text-light);" data-i18n="metric_land_sub">142 National Infrastructure Corridors</span>
+              <span class="metric-badge badge-pos">+1,240 Ha this month</span>
+            </div>
+          </div>
+
+          <div class="metric-card accent-green">
+            <div class="metric-header">
+              <div>
+                <div class="metric-title" data-i18n="metric_dbt_title">Direct Benefit Transfer (DBT) Disbursed</div>
+                <div class="metric-val">₹18,945.20 Cr</div>
+              </div>
+              <div class="metric-icon-wrap">💳</div>
+            </div>
+            <div class="metric-footer">
+              <span style="color:var(--gov-text-light);" data-i18n="metric_dbt_sub">128,490 Verified Khatedars</span>
+              <span class="metric-badge badge-pos">92.4% velocity</span>
+            </div>
+          </div>
+
+          <div class="metric-card accent-saffron">
+            <div class="metric-header">
+              <div>
+                <div class="metric-title" data-i18n="metric_gazette_title">Active Gazette Notifications</div>
+                <div class="metric-val">1,482</div>
+              </div>
+              <div class="metric-icon-wrap">📜</div>
+            </div>
+            <div class="metric-footer">
+              <span style="color:var(--gov-text-light);" data-i18n="metric_gazette_sub">Sec 4: 840 | Sec 11: 642</span>
+              <span class="metric-badge badge-neg">28 this week</span>
+            </div>
+          </div>
+
+          <div class="metric-card accent-navy">
+            <div class="metric-header">
+              <div>
+                <div class="metric-title" data-i18n="metric_grievance_title">Claims &amp; Grievances Resolved</div>
+                <div class="metric-val">96.8 %</div>
+              </div>
+              <div class="metric-icon-wrap">⚖️</div>
+            </div>
+            <div class="metric-footer">
+              <span style="color:var(--gov-text-light);" data-i18n="metric_grievance_sub">18,420 of 19,028 resolved</span>
+              <span class="metric-badge badge-pos">Avg: 11 Days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Institutional About Us Card -->
+        <section class="gov-about-card" id="about-section">
+          <div class="about-header-row">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="about-badge-icon">🏛️</div>
+              <div>
+                <h3 style="font-size:16px;color:var(--gov-navy);margin:0;" data-i18n="about_card_title">About Us — GeoSetu-India Platform</h3>
+                <div style="font-size:11px;color:var(--gov-text-muted);" data-i18n="dept_full">Department of Land Resources • Ministry of Rural Development • Government of India</div>
+              </div>
+            </div>
+            <span class="badge badge-active">RFCTLARR Act 2013</span>
+          </div>
+
+          <div class="about-text-content">
+            <p style="margin:0 0 10px;" data-i18n="about_card_p1">
+              <strong>GeoSetu-India (National Land Acquisition &amp; Management System)</strong> is the unified digital public infrastructure engineered to bring complete transparency, algorithmic accountability, and direct citizen benefit transfer to land acquisition proceedings across India.
+            </p>
+
+            <div id="about-more-content" style="display:none;margin-top:12px;padding-top:12px;border-top:1px dashed var(--gov-border);">
+              <p style="margin:0 0 10px;">
+                Operating in strict compliance with the <strong>Right to Fair Compensation and Transparency in Land Acquisition, Rehabilitation and Resettlement (RFCTLARR) Act, 2013</strong>, the platform bridges Central Infrastructure Ministries (NHAI, MoRTH, DFCCIL, Indian Railways, MoPNG), State Revenue Departments, and over 1.2 Crore land-owning citizens (Khatedars).
+              </p>
+              <div class="about-pillars-grid">
+                <div class="about-pillar-box">
+                  <div class="about-pillar-title">⚖️ Statutory Workflow Automation</div>
+                  <div class="about-pillar-sub">Automated milestones from Section 4 SIA to Section 38 physical land handover.</div>
+                </div>
+                <div class="about-pillar-box">
+                  <div class="about-pillar-title">🗺️ Geo-Referenced Cadastre</div>
+                  <div class="about-pillar-sub">Satellite imagery overlay with sub-meter cadastral polygon verification.</div>
+                </div>
+                <div class="about-pillar-box">
+                  <div class="about-pillar-title">✍️ Aadhaar e-Sign &amp; DSC</div>
+                  <div class="about-pillar-sub">Legally enforceable ₹100 E-Stamp deeds signed via Aadhaar OTP and Class-3 DSC.</div>
+                </div>
+                <div class="about-pillar-box">
+                  <div class="about-pillar-title">💳 Zero-Leakage PFMS DBT</div>
+                  <div class="about-pillar-sub">Direct disbursement of statutory compensation (Base + 100% Solatium + 12% Interest).</div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn-read-more" id="btn-about-toggle" onclick="toggleAboutReadMore()" data-i18n="btn_read_more">
+              Read More Detailed Overview ▼
+            </button>
+          </div>
+        </section>
+
+        <!-- Key Statutory Pillars & Digital Infrastructure Highlights -->
+        <section class="gov-pillars-section">
+          <div class="pillars-section-header">
+            <div class="section-tag" data-i18n="pillars_tag">RFCTLARR ACT 2013 COMPLIANT • DIGITAL PUBLIC INFRASTRUCTURE</div>
+            <h3 class="section-heading" data-i18n="pillars_heading">Key Statutory Pillars &amp; Digital Governance</h3>
+            <p class="section-sub" data-i18n="pillars_sub">A single unified digital architecture ensuring complete transparency, geospatial precision, and algorithmic accountability across national corridor acquisitions.</p>
+          </div>
+          <div class="gov-pillars-grid">
+            <div class="gov-pillar-card-home">
+              <div class="pillar-card-icon">⚖️</div>
+              <div class="pillar-card-title">RFCTLARR Statutory Pipeline</div>
+              <div class="pillar-card-desc">10-stage automated statutory compliance tracking from preliminary Section 4 SIA to Section 38 final land handover.</div>
+            </div>
+            <div class="gov-pillar-card-home">
+              <div class="pillar-card-icon">🗺️</div>
+              <div class="pillar-card-title">GIS Cadastral &amp; Drone Mapping</div>
+              <div class="pillar-card-desc">Sub-meter cadastral boundaries overlaid with high-resolution satellite imagery and automated RoR cross-verification.</div>
+            </div>
+            <div class="gov-pillar-card-home">
+              <div class="pillar-card-icon">💳</div>
+              <div class="pillar-card-title">Zero-Intermediary PFMS DBT</div>
+              <div class="pillar-card-desc">Aadhaar-seeded direct benefit transfers for 100% Solatium, base market value, and interest with zero leakages.</div>
+            </div>
+            <div class="gov-pillar-card-home">
+              <div class="pillar-card-icon">✍️</div>
+              <div class="pillar-card-title">Aadhaar e-Sign &amp; E-Stamp Deeds</div>
+              <div class="pillar-card-desc">Legally enforceable digital deeds signed with Aadhaar OTP by citizens and Class-3 DSC by Competent Authorities.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Official Portal Login Call-to-Action Card -->
+        <section class="gov-login-cta-card">
+          <div class="cta-card-left">
+            <div class="cta-badge" data-i18n="cta_badge">🔒 OFFICIAL GATEWAY • JANPARICHAY SSO</div>
+            <h3 class="cta-title" data-i18n="cta_title">Ready to Access Officer or Citizen Services?</h3>
+            <p class="cta-desc" data-i18n="cta_desc">
+              Sign in to manage land acquisition cases, approve Section 11/19 declarations, execute e-agreements, track DBT compensation payouts, or access high-precision cadastral GIS maps.
+            </p>
+            <div class="cta-bullets">
+              <span>✓ Official Central SSO</span>
+              <span>✓ Aadhaar e-Sign Enabled</span>
+              <span>✓ Multi-Role Access Control</span>
+              <span>✓ 256-bit SSL Encrypted</span>
+            </div>
+          </div>
+          <div class="cta-card-right">
+            <button class="btn-cta-login" onclick="showLoginPage()">
+              <span data-i18n="btn_proceed_login">🔑 Proceed to Login / SSO →</span>
+            </button>
+            <button class="btn-cta-inquiry" onclick="switchPublicTab('inquiry')" data-i18n="btn_citizen_inquiry">
+              🔍 Citizen Land Inquiry &amp; Grievance
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================= TAB 2: CITIZEN INQUIRY & GRIEVANCE ================= -->
+      <div class="public-tab-panel" id="panel-inquiry" style="display:none;">
+        <div class="inquiry-grid">
+          <!-- Left Column: Inquiry Form -->
+          <div class="inquiry-form-card">
+            <h3 style="font-size:16px;color:var(--gov-navy);margin-bottom:4px;" data-i18n="inq_title">Citizen Land Details &amp; Compensation Inquiry</h3>
+            <p style="font-size:12px;color:var(--gov-text-muted);margin-bottom:18px;" data-i18n="inq_sub">
+              Verify cadastral RoR records, track statutory Section 15 objections, or calculate compensation entitlement under RFCTLARR Act 2013.
+            </p>
+
+            <form id="citizen-inquiry-form">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;">
+                <div class="gov-form-group">
+                  <label class="gov-form-label" for="inq-state"><span data-i18n="lbl_state">State</span> <span class="req-star">*</span></label>
+                  <select id="inq-state" class="gov-select" required>
+                    <option value="">Select State</option>
+                    <option value="Madhya Pradesh" selected>Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                  </select>
+                </div>
+
+                <div class="gov-form-group">
+                  <label class="gov-form-label" for="inq-survey"><span data-i18n="lbl_survey">Survey / Plot Number</span> <span class="req-star">*</span></label>
+                  <input type="text" id="inq-survey" class="gov-input" placeholder="e.g. 104/2B or 45A" required>
+                </div>
+
+                <div class="gov-form-group">
+                  <label class="gov-form-label" for="inq-khasra"><span data-i18n="lbl_khasra">Khasra Number</span> <span class="req-star">*</span></label>
+                  <input type="text" id="inq-khasra" class="gov-input" placeholder="e.g. KH-412" required>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:12px;">
+                <div class="gov-form-group">
+                  <label class="gov-form-label" for="inq-name"><span data-i18n="lbl_khatedar_name">Khatedar Full Name</span> <span class="req-star">*</span></label>
+                  <input type="text" id="inq-name" class="gov-input" placeholder="As per RoR records" required>
+                </div>
+
+                <div class="gov-form-group">
+                  <label class="gov-form-label" for="inq-mobile"><span data-i18n="lbl_mobile">Aadhaar Linked Mobile Number</span> <span class="req-star">*</span></label>
+                  <input type="tel" id="inq-mobile" class="gov-input" placeholder="10-digit mobile number" maxlength="10" required>
+                </div>
+              </div>
+
+              <div class="gov-form-group">
+                <label class="gov-form-label" data-i18n="lbl_category">Select Inquiry / Claim Category</label>
+                <div class="radio-options-grid">
+                  <label class="gov-radio-card">
+                    <input type="radio" name="inq-type" value="compensation" checked>
+                    <div>
+                      <div class="radio-card-title" data-i18n="cat_comp">Compensation Award Verification</div>
+                      <div class="radio-card-desc" data-i18n="cat_comp_desc">Verify statutory calculation under Sec 26-30 (Circle rate + Multiplier + 100% Solatium).</div>
+                    </div>
+                  </label>
+                  <label class="gov-radio-card">
+                    <input type="radio" name="inq-type" value="objection">
+                    <div>
+                      <div class="radio-card-title" data-i18n="cat_obj">Statutory Objection (Section 15)</div>
+                      <div class="radio-card-desc" data-i18n="cat_obj_desc">File objection regarding land boundaries, area discrepancy or public purpose declaration.</div>
+                    </div>
+                  </label>
+                  <label class="gov-radio-card">
+                    <input type="radio" name="inq-type" value="dbt">
+                    <div>
+                      <div class="radio-card-title" data-i18n="cat_dbt">DBT Payment Status / Bank Issue</div>
+                      <div class="radio-card-desc" data-i18n="cat_dbt_desc">Track Aadhaar-seeded compensation credit delay or mandate rectification.</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="gov-checkbox-wrap">
+                <input type="checkbox" id="statutory-declaration" required>
+                <label for="statutory-declaration">
+                  <div class="checkbox-text-title" data-i18n="lbl_declaration_title">Statutory Declaration under Section 84 of RFCTLARR Act 2013</div>
+                  <div class="checkbox-text-desc" data-i18n="lbl_declaration_desc">I hereby solemnly declare that the land survey details provided are accurate as per the official Record of Rights (RoR). Providing false information is punishable under law.</div>
+                </label>
+              </div>
+
+              <div style="display:flex;justify-content:flex-end;gap:10px;">
+                <button type="reset" class="btn btn-secondary" data-i18n="btn_reset">Reset Form</button>
+                <button type="submit" class="btn btn-navy" data-i18n="btn_submit_inq">Submit Inquiry →</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right Column: Statutory Formula & Required Docs -->
+          <div>
+            <div class="inquiry-sidebar-card accent-navy">
+              <div style="font-weight:700;color:var(--gov-navy);font-size:13px;display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+                <span>⚖️ Statutory Compensation Formula</span>
+              </div>
+              <div style="background:#f8fafc;padding:12px;border:1px solid var(--gov-border);border-radius:3px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;margin-bottom:10px;">
+                <div style="font-weight:800;color:var(--gov-navy);font-size:12.5px;">Total Award = (B × M) + S + A</div>
+                <div style="color:var(--gov-text-muted);font-size:10.5px;margin-top:6px;">
+                  • <b>B</b> = Base Market Value (Sec 26)<br>
+                  • <b>M</b> = Multiplier (1.0x Urban to 2.0x Rural)<br>
+                  • <b>S</b> = 100% Solatium (Sec 30)<br>
+                  • <b>A</b> = 12% Additional Market Value
+                </div>
+              </div>
+              <p style="font-size:11px;color:var(--gov-text-muted);margin:0;">
+                All compensation awards are directly credited to beneficiary bank accounts through PFMS DBT with zero intermediary commission.
+              </p>
+            </div>
+
+            <div class="inquiry-sidebar-card accent-saffron">
+              <div style="font-weight:700;color:var(--gov-navy);font-size:13px;display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+                <span>📋 Required Supporting Documents</span>
+              </div>
+              <ul style="padding-left:18px;margin:0;font-size:11px;color:var(--gov-text-muted);line-height:1.6;">
+                <li>Updated Record of Rights (7/12 / Khasra / Jamabandi)</li>
+                <li>Aadhaar Card (Identity &amp; Biometric Verification)</li>
+                <li>Cancelled Cheque / Bank Passbook Copy (DBT Mandate)</li>
+                <li>Mutation Extract / Registered Sale Deed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ================= DEDICATED LOGIN / SSO PAGE ================= -->
+  <div id="login-screen" style="display:none;">
+    <!-- Dedicated Login Header Bar with Breadcrumb and Back to Home -->
+    <div class="gov-login-page-header">
+      <div class="gov-login-header-inner">
+        <div class="gov-login-breadcrumb">
+          <a href="javascript:void(0)" onclick="showHomeScreen()"><span data-i18n="home_crumb">🏛️ Home</span></a>
+          <span class="bc-sep">›</span>
+          <span class="bc-current" data-i18n="sso_crumb">🔑 Central Single Sign-On (JanParichay SSO)</span>
+        </div>
+        <button class="btn-back-home" onclick="showHomeScreen()" title="Return to Portal Home" data-i18n="back_to_home">
+          ← Back to Portal Home
+        </button>
+      </div>
+    </div>
+
+    <!-- JanParichay National SSO Wrap -->
+    <div class="gov-login-wrap" style="box-shadow:none;">
+      <div class="gov-login-hero">
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;color:var(--gov-gold);margin-bottom:10px;">
+          RFCTLARR ACT 2013 COMPLIANT • CENTRAL DIGITAL REPOSITORY
+        </div>
+        <div class="gov-hero-heading" data-i18n="sso_hero_title">
+          National Land Acquisition &amp; Management Portal
+        </div>
+        <p class="gov-hero-sub" data-i18n="sso_hero_sub">
+          A single unified digital record of every land parcel, acquisition proceeding, spatial boundary, and compensation rupee moving from preliminary notification to project commissioning.
+        </p>
+
+        <div class="gov-pillars">
+          <div class="gov-pillar-card">
+            <div class="gov-pillar-icon">⚖️</div>
+            <div class="gov-pillar-title">RFCTLARR Statutory Pipeline</div>
+            <div class="gov-pillar-desc">10-stage compliance tracking with auto-generated Section 11 &amp; 19 notices.</div>
+          </div>
+          <div class="gov-pillar-card">
+            <div class="gov-pillar-icon">🗺️</div>
+            <div class="gov-pillar-title">GIS Cadastral Mapping</div>
+            <div class="gov-pillar-desc">Georeferenced Khasra boundaries with satellite verification.</div>
+          </div>
+          <div class="gov-pillar-card">
+            <div class="gov-pillar-icon">💳</div>
+            <div class="gov-pillar-title">PFMS DBT Disbursement</div>
+            <div class="gov-pillar-desc">Aadhaar-seeded direct compensation disbursement with zero leakages.</div>
+          </div>
+          <div class="gov-pillar-card">
+            <div class="gov-pillar-icon">🛡️</div>
+            <div class="gov-pillar-title">Tamper-Evident Audit Trail</div>
+            <div class="gov-pillar-desc">Cryptographic activity logging with timestamped gazette gazetting.</div>
+          </div>
+        </div>
+
+        <div class="gov-login-help-strip">
+          <span>Need assistance? Contact National Helpdesk: <b>1800-11-2016</b> (Toll Free)</span>
+        </div>
+      </div>
+
+      <div class="gov-login-form-wrap">
+        <div class="gov-sso-card">
+          <div class="sso-head">
+            <div class="sso-title" data-i18n="sso_heading">Central Single Sign-On</div>
+            <div class="sso-sub" data-i18n="sso_sub">Official Portal Gateway (JanParichay / MeriPehchan SSO)</div>
+          </div>
+
+          <div class="sso-tabs">
+            <button type="button" class="sso-tab active" id="tab-btn-signin" data-i18n="tab_signin">Officer / Staff Sign In</button>
+            <button type="button" class="sso-tab" id="tab-btn-register" data-i18n="tab_register">Citizen / New User</button>
+          </div>
+
+          <div class="auth-error" id="auth-error-msg"></div>
+
+          <!-- SIGN IN FORM -->
+          <form id="signin-form">
+            <div class="auth-input-group">
+              <label for="login-identifier" data-i18n="lbl_identifier">Official Email ID / Username / Parichay ID</label>
+              <div class="auth-input-wrap">
+                <input type="text" id="login-identifier" placeholder="e.g. admin or officer@geosetu.gov.in" autocomplete="username" required>
+              </div>
+            </div>
+
+            <div class="auth-input-group">
+              <label for="login-password" data-i18n="lbl_password">Password</label>
+              <div class="auth-input-wrap">
+                <input type="password" id="login-password" placeholder="Enter official password" autocomplete="current-password" required>
+                <button type="button" class="auth-eye-btn" id="toggle-password" title="Toggle visibility">👁</button>
+              </div>
+            </div>
+
+            <!-- Security Captcha -->
+            <div class="auth-input-group">
+              <label data-i18n="lbl_captcha">Security Verification Code</label>
+              <div class="captcha-row">
+                <div class="captcha-box" id="captcha-display">K7M2X</div>
+                <button type="button" class="captcha-reload" id="captcha-reload-btn" title="Reload Captcha">⟳</button>
+                <input type="text" class="captcha-input" id="login-captcha" placeholder="Enter code" maxlength="5" required>
+              </div>
+            </div>
+
+            <div class="auth-options">
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+                <input type="checkbox" id="login-remember" checked> <span data-i18n="lbl_remember">Remember session</span>
+              </label>
+              <a id="btn-forgot-pw" data-i18n="btn_help_creds">Credential Assistance</a>
+            </div>
+
+            <button type="submit" class="btn-sso-submit" id="btn-submit-signin">
+              <span data-i18n="btn_signin">Sign In to Portal →</span>
+            </button>
+          </form>
+
+          <!-- REGISTER FORM -->
+          <form id="register-form" style="display:none;">
+            <div class="auth-input-group">
+              <label for="reg-name" data-i18n="lbl_reg_name">Full Name</label>
+              <div class="auth-input-wrap">
+                <input type="text" id="reg-name" placeholder="e.g. Rameshwar Patil" required>
+              </div>
+            </div>
+            <div class="auth-input-group">
+              <label for="reg-username" data-i18n="lbl_reg_username">Official Username</label>
+              <div class="auth-input-wrap">
+                <input type="text" id="reg-username" placeholder="e.g. ramesh.patil" required>
+              </div>
+            </div>
+            <div class="auth-input-group">
+              <label for="reg-email" data-i18n="lbl_reg_email">Official / Citizen Email ID</label>
+              <div class="auth-input-wrap">
+                <input type="email" id="reg-email" placeholder="e.g. ramesh@nic.in or citizen@domain.in" required>
+              </div>
+            </div>
+            <div class="auth-input-group">
+              <label for="reg-role" data-i18n="lbl_reg_role">Role &amp; Jurisdiction</label>
+              <select id="reg-role" class="gov-select">
+                <option value="LAND_OWNER">Citizen / Landowner</option>
+                <option value="LAND_OFFICER">Land Acquisition Officer</option>
+                <option value="PROJECT_AUTHORITY">Project Authority (NHAI/Railways)</option>
+                <option value="ADMIN">District Nodal Administrator</option>
+              </select>
+            </div>
+            <div class="auth-input-group">
+              <label for="reg-password" data-i18n="lbl_reg_password">Password (Min. 6 chars)</label>
+              <div class="auth-input-wrap">
+                <input type="password" id="reg-password" placeholder="Create strong password" required>
+              </div>
+            </div>
+            <button type="submit" class="btn-sso-submit" id="btn-submit-register">
+              <span data-i18n="btn_register_submit">Register &amp; Access →</span>
+            </button>
+          </form>
+
+          <!-- Quick Demo Credential Chips -->
+          <div class="quick-creds-box">
+            <div class="quick-creds-title">
+              <span>Official Demo Credentials</span>
+              <span style="font-weight:normal;text-transform:none;color:var(--gov-text-muted);">1-Click Auto-Fill (7 Roles)</span>
+            </div>
+            <div class="cred-chips">
+              <div class="cred-chip" data-user="central" data-pass="password123">
+                <div class="chip-role">1. Central / Ministry</div>
+                <div class="chip-user">central / password123</div>
+              </div>
+              <div class="cred-chip" data-user="state" data-pass="password123">
+                <div class="chip-role">2. State Authority</div>
+                <div class="chip-user">state / password123</div>
+              </div>
+              <div class="cred-chip" data-user="district" data-pass="password123">
+                <div class="chip-role">3. District Authority (CALA)</div>
+                <div class="chip-user">district / password123</div>
+              </div>
+              <div class="cred-chip" data-user="agency" data-pass="password123">
+                <div class="chip-role">4. Project Agency (NHAI)</div>
+                <div class="chip-user">agency / password123</div>
+              </div>
+              <div class="cred-chip" data-user="officer" data-pass="password123">
+                <div class="chip-role">5. Acquisition Officer (LAO)</div>
+                <div class="chip-user">officer / password123</div>
+              </div>
+              <div class="cred-chip" data-user="field" data-pass="password123">
+                <div class="chip-role">6. Field Officer (Surveyor)</div>
+                <div class="chip-user">field / password123</div>
+              </div>
+              <div class="cred-chip" data-user="citizen" data-pass="password123">
+                <div class="chip-role">7. Citizen / Landowner</div>
+                <div class="chip-user">citizen / password123</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gov-disclaimer">
+            <b>Notice:</b> Unauthorized attempt to access or tamper with digital land records on this portal is a cognizable offense under Sections 43 &amp; 66 of the Information Technology Act 2000.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= AUTHENTICATED APP SCREEN ================= -->
+  <div id="app-screen">
+    <!-- Official Government Page Band -->
+    <div class="gov-page-band">
+      <div class="band-top-row">
+        <div class="band-crumb" id="topbar-crumb">Home &gt; Overview</div>
+        <div class="band-ist" id="band-ist-clock">IST: Loading...</div>
+      </div>
+
+      <div class="band-title-row">
+        <div>
+          <div class="band-main-title" id="topbar-title">Central Monitoring Dashboard</div>
+        </div>
+
+        <div class="band-user-actions">
+          <span class="role-pill" id="role-pill">OFFICIAL</span>
+          <span class="circle-badge" data-i18n="circle_location">Bhopal Circle, MP</span>
+          <span id="user-name" style="font-weight:700;font-size:12px;">Official User</span>
+          <button class="btn btn-sm btn-secondary" id="band-theme-toggle" title="Toggle contrast" data-i18n="contrast_btn">◐ Contrast</button>
+          <button class="btn btn-sm btn-danger" id="logout-btn" data-i18n="nav_logout">Sign Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- App Shell: Sidebar + Content -->
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" role="navigation" aria-label="Portal Module Navigation"></aside>
+      <div class="main" role="main">
+        <div class="content" id="content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GIGW COMPLIANT FOOTER ================= -->
+  <footer class="gov-footer" role="contentinfo">
+    <!-- Red Prototype Disclaimer Notice Banner -->
+    <div class="prototype-disclaimer-strip">
+      ⚠️ <strong>PROTOTYPE NOTICE:</strong> GeoSetu-India is a conceptual digital demonstration platform developed for research and hackathon prototyping purposes. It is not an officially deployed Government of India portal, NIC-hosted, or STQC certified.
+    </div>
+
+    <!-- 4-Column Institutional Footer -->
+    <div class="gov-footer-grid">
+      <!-- Col 1: Institutional Authority -->
+      <div>
+        <div class="footer-col-title">GeoSetu-India</div>
+        <p style="font-size:11.5px;color:#CBD5E1;line-height:1.6;margin:0 0 10px;">
+          National Land Acquisition &amp; Management System operating under the statutory framework of the RFCTLARR Act, 2013.
+        </p>
+        <div style="font-size:11px;color:#94A3B8;line-height:1.6;">
+          <div>📍 NBO Building, Nirman Bhawan, New Delhi - 110011</div>
+          <div>📞 Toll-Free Helpline: 1800-11-2016</div>
+          <div>✉️ support-geosetu@gov-demo.in</div>
+        </div>
+      </div>
+
+      <!-- Col 2: Related National Portals -->
+      <div>
+        <div class="footer-col-title">National Portals</div>
+        <ul class="footer-links-list">
+          <li><a href="https://gatishakti.gov.in" target="_blank" rel="noopener">PM GatiShakti National Master Plan ↗</a></li>
+          <li><a href="https://ngdrs.gov.in" target="_blank" rel="noopener">National Generic Document Registration (NGDRS) ↗</a></li>
+          <li><a href="https://bhuvan.nrsc.gov.in" target="_blank" rel="noopener">Bhuvan Geospatial Portal (ISRO) ↗</a></li>
+          <li><a href="https://dolr.gov.in" target="_blank" rel="noopener">Department of Land Resources (DoLR) ↗</a></li>
+          <li><a href="https://rural.nic.in" target="_blank" rel="noopener">Ministry of Rural Development ↗</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Governance Policies & Compliance -->
+      <div>
+        <div class="footer-col-title">Policies &amp; Compliance</div>
+        <ul class="footer-links-list">
+          <li><a href="#policies" onclick="openAccessibilityModal()">Website Policies</a></li>
+          <li><a href="#terms" onclick="openAccessibilityModal()">Terms &amp; Conditions</a></li>
+          <li><a href="#privacy" onclick="openAccessibilityModal()">Privacy Policy</a></li>
+          <li><a href="#hyperlink" onclick="openAccessibilityModal()">Hyperlinking Policy</a></li>
+          <li><a href="#a11y" onclick="openAccessibilityModal()">Accessibility Statement</a></li>
+          <li><a href="#sitemap" onclick="openSitemapModal()">Site Map</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Web Information Manager -->
+      <div>
+        <div class="footer-col-title">Web Information Manager</div>
+        <div class="wim-box">
+          <div style="margin-bottom:6px;">
+            <span class="wim-label">Officer In-Charge:</span>
+            <span class="wim-officer">Joint Secretary (Land Administration)</span>
+          </div>
+          <div style="margin-bottom:8px;">
+            <span class="wim-label">Department:</span>
+            <span style="color:#CBD5E1;">Department of Land Resources, MoRD</span>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:6px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#94A3B8;font-size:10px;">Reviewed: 25-Sep-2026</span>
+            <span class="visitor-badge">Visitors: 1,482,904</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright & Attribution Bar -->
+    <div class="gov-footer-bottom">
+      <div class="gov-footer-bottom-inner">
+        <div>
+          © 2026 Department of Land Resources, Ministry of Rural Development, Government of India. Prototype Interface.
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span>Designed with Indian e-Gov Standards</span>
+          <span>•</span>
+          <span>GIGW 3.0 &amp; WCAG 2.1 AA Aligned</span>
+          <span>•</span>
+          <button class="btn btn-sm btn-secondary btn-device-toggle" onclick="Device.toggleMode()" style="padding:2px 8px;font-size:0.75rem;">
+            📱 Mobile View
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- National Tricolour Bottom Strip -->
+    <div class="gov-tricolour-strip" aria-hidden="true"></div>
+  </footer>
+
+  <!-- Modal Container -->
+  <div id="modal-root"></div>
+
+  <!-- Toast Wrap -->
+  <div class="toast-wrap" id="toast-wrap"></div>
+
+  <!-- External CDN Dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+
+  <!-- Core Architecture Modules in Dependency Order -->
+  <script src="js/device.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/mobile-layout.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/auth.js"></script>
+
+  <!-- Statutory & Role Feature Views -->
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/map.js"></script>
+  <script src="js/views/parcels.js"></script>
+  <script src="js/views/cases.js"></script>
+  <script src="js/views/documents.js"></script>
+  <script src="js/views/approvals.js"></script>
+  <script src="js/views/agreements.js"></script>
+  <script src="js/views/compensation.js"></script>
+  <script src="js/views/projects.js"></script>
+  <script src="js/views/alerts.js"></script>
+  <script src="js/views/assistant.js"></script>
+  <script src="js/views/field.js"></script>
+  <script src="js/views/reports.js"></script>
+
+  <!-- Application Bootstrap Entrypoint -->
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "geosetu-india",
+  "version": "2.0.0",
+  "description": "GeoSetu-India — National Land Acquisition & Management Platform Backend (Node.js + Express + Supabase)",
+  "main": "server/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed": "node server/scripts/seed.js"
+  },
+  "keywords": [
+    "geosetu-india",
+    "land-acquisition",
+    "rfctlarr",
+    "gigw",
+    "supabase",
+    "express",
+    "postgis"
+  ],
+  "author": "Department of Land Resources, Govt. of India",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}

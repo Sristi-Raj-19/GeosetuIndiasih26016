@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Web Frontend Service (Nginx)
+  web:
+    build:
+      context: .
+      dockerfile: devops/Dockerfile
+    container_name: geosetu-web
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  # Enterprise Cadastral Spatial Database (PostgreSQL 15 + PostGIS 3)
+  db:
+    image: postgis/postgis:15-3.3-alpine
+    container_name: geosetu-db
+    environment:
+      POSTGRES_DB: geosetu
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pgdata:
